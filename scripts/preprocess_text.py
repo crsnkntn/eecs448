@@ -6,6 +6,7 @@ import ast
 from nltk.corpus import stopwords
 
 nltk.download('stopwords')
+nltk.download('punkt')
 stop_words = set(stopwords.words('english'))
 
 # Order of processing:
@@ -103,7 +104,7 @@ sec_teams = {
     'Ole Miss',
     'South Carolina',
     'Tennessee',
-    'Texas A&M',
+    'Texas AM',
     'Vanderbilt'
 }
 
@@ -222,9 +223,9 @@ sun_belt_teams = {
     'ULM'
 }
 
-common_stopwords = ['cfb', 'rcfb']
-univ_stopwords = ['university', 'u', 'state', 'tech', 'college']
-top10_mascot_stopwords = [
+common_stopwords = {'cfb', 'rcfb'}
+univ_stopwords = {'university', 'u', 'state', 'tech', 'college'}
+top10_mascot_stopwords = {
 'wolverines', 'mich', 'umich', # Michigan
 'bulldogs', 'dawgs' # Georgia
 'roll', 'tide', 'bama', # Alabama
@@ -235,7 +236,7 @@ top10_mascot_stopwords = [
 'boomer', 'sooner', 'homa' # Oklahoma
 'ducks', # Oregon
 'horns', 'longhorns', 'hookem' # Texas
-]
+}
 
 def transform_team_names(teams):
     transformed_teams = set()
@@ -393,15 +394,12 @@ def clean_text_mid(text):
 # Mid + all team names, [IN PROGRESS] all state names, numbers, [TODO] flair residuals
 def clean_text_max(text):
     # Remove stopwords
-    words = text.split()
+    text = re.sub(r'http\S+', '', text)
+    words = nltk.tokenize.word_tokenize(text.lower())
 
     # filtered_words = [word for word in words if word not in stop_words and len(word) < MAX_WORD_LEN and not word.isnumeric()]
     filtered_words = []
     for word in words:
-        # Remove URLs
-        if bool(re.match(r'http\S+', '', word)):
-            continue
-
         # {X}SU, {XX}SU
         if bool(re.match(r'\b\w{1,2}su\b', word)):
             continue
@@ -436,7 +434,7 @@ def clean_text_max(text):
     return text
 
 # Example usage:
-csv_dir = "cleaned_combined_classdata_csv"
-output_dir = "datasets/all/max/csv"
+csv_dir = "datasets/csv_unclean"
+output_dir = "datasets/csv_clean"
 
 clean_csv_files(csv_dir, output_dir)

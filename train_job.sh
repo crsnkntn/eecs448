@@ -12,12 +12,8 @@
 
 module purge
 
-pip3 install --user torch
-pip3 install --user sklearn
 pips install --user pandas
-pip3 install --user setuptools-rust
-pip3 install --user transformers
-pip3 install --user tqdm
+pip3 install --user nltk
 
 
-python3 util/create_and_train.py
+python3 scripts/preprocess_text.py

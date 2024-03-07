@@ -1,0 +1,34 @@
+/var/spool/slurmd.spool/job4318318/slurm_script: line 15: pips: command not found
+Requirement already satisfied: nltk in /home/crsnell/.local/lib/python3.6/site-packages (3.6.7)
+Requirement already satisfied: joblib in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (1.1.1)
+Requirement already satisfied: regex>=2021.8.3 in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (2023.8.8)
+Requirement already satisfied: tqdm in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (4.64.1)
+Requirement already satisfied: click in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (8.0.4)
+Requirement already satisfied: importlib-metadata in /home/crsnell/.local/lib/python3.6/site-packages (from click->nltk) (4.8.3)
+Requirement already satisfied: importlib-resources in /home/crsnell/.local/lib/python3.6/site-packages (from tqdm->nltk) (5.4.0)
+Requirement already satisfied: zipp>=0.5 in /home/crsnell/.local/lib/python3.6/site-packages (from importlib-metadata->click->nltk) (3.6.0)
+Requirement already satisfied: typing-extensions>=3.6.4 in /home/crsnell/.local/lib/python3.6/site-packages (from importlib-metadata->click->nltk) (4.1.1)
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/crsnell/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+Traceback (most recent call last):
+  File "scripts/preprocess_text.py", line 442, in <module>
+    clean_csv_files(csv_dir, output_dir)
+  File "scripts/preprocess_text.py", line 342, in clean_csv_files
+    dfmax['comment_body'] = dfmax['comment_body'].apply(lambda x: clean_text_max(str(x)))
+  File "/home/crsnell/.local/lib/python3.6/site-packages/pandas/core/series.py", line 4213, in apply
+    mapped = lib.map_infer(values, f, convert=convert_dtype)
+  File "pandas/_libs/lib.pyx", line 2403, in pandas._libs.lib.map_infer
+  File "scripts/preprocess_text.py", line 342, in <lambda>
+    dfmax['comment_body'] = dfmax['comment_body'].apply(lambda x: clean_text_max(str(x)))
+  File "scripts/preprocess_text.py", line 402, in clean_text_max
+    if bool(re.match(r'http\S+', '', word)):
+  File "/usr/lib64/python3.6/re.py", line 172, in match
+    return _compile(pattern, flags).match(string)
+  File "/usr/lib64/python3.6/re.py", line 301, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "/usr/lib64/python3.6/sre_compile.py", line 562, in compile
+    p = sre_parse.parse(p, flags)
+  File "/usr/lib64/python3.6/sre_parse.py", line 855, in parse
+    p = _parse_sub(source, pattern, flags & SRE_FLAG_VERBOSE, 0)
+TypeError: unsupported operand type(s) for &: 'str' and 'int'

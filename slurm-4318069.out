@@ -1,0 +1,17 @@
+/var/spool/slurmd.spool/job4318069/slurm_script: line 15: pips: command not found
+Requirement already satisfied: nltk in /home/crsnell/.local/lib/python3.6/site-packages (3.6.7)
+Requirement already satisfied: click in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (8.0.4)
+Requirement already satisfied: tqdm in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (4.64.1)
+Requirement already satisfied: joblib in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (1.1.1)
+Requirement already satisfied: regex>=2021.8.3 in /home/crsnell/.local/lib/python3.6/site-packages (from nltk) (2023.8.8)
+Requirement already satisfied: importlib-metadata in /home/crsnell/.local/lib/python3.6/site-packages (from click->nltk) (4.8.3)
+Requirement already satisfied: importlib-resources in /home/crsnell/.local/lib/python3.6/site-packages (from tqdm->nltk) (5.4.0)
+Requirement already satisfied: zipp>=0.5 in /home/crsnell/.local/lib/python3.6/site-packages (from importlib-metadata->click->nltk) (3.6.0)
+Requirement already satisfied: typing-extensions>=3.6.4 in /home/crsnell/.local/lib/python3.6/site-packages (from importlib-metadata->click->nltk) (4.1.1)
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/crsnell/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+Traceback (most recent call last):
+  File "scripts/preprocess_text.py", line 292, in <module>
+    max_stop_words = stop_words | all_fbs_teams | state_names | squished_state_names | other_state_tokens | common_stopwords | univ_stopwords | top10_mascot_stopwords
+TypeError: unsupported operand type(s) for |: 'set' and 'list'
