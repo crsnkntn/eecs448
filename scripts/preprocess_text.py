@@ -294,14 +294,6 @@ max_stop_words = stop_words | all_fbs_teams | state_names | squished_state_names
 
 MAX_WORD_LEN = 16
 
-# Handling (post)game threads - we should keep the post title, but the post self text is unnecessary
-def clean_gamethreads(post_title, post_selftext):
-    post = {}
-    if re.search(r'(^\[Game Thread\])|(^\[[Post Game Thread])', post_title) :
-        post_selftext = ''
-        post_title = re.sub(r'\([^)]*\)', '', post['post_title']) # Remove the time '(7:30 PM ET)'
-    return post_title, post_selftext
-
 def clean_csv_files(csv_dir, output_dir):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
