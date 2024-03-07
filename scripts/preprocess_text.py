@@ -222,6 +222,21 @@ sun_belt_teams = {
     'ULM'
 }
 
+common_stopwords = ['cfb', 'rcfb']
+univ_stopwords = ['university', 'u', 'state', 'tech', 'college']
+top10_mascot_stopwords = [
+'wolverines', 'mich', 'umich', # Michigan
+'bulldogs', 'dawgs' # Georgia
+'roll', 'tide', 'bama', # Alabama
+'irish', 'fighting', 'nd' #ND
+'noles', 'seminoles', # FSU
+'hawks', 'hawkeyes', # Iowa
+'bucks', 'buckeyes' # OSU
+'boomer', 'sooner', 'homa' # Oklahoma
+'ducks', # Oregon
+'horns', 'longhorns', 'hookem' # Texas
+]
+
 def transform_team_names(teams):
     transformed_teams = set()
     for team in teams:
@@ -274,7 +289,7 @@ stop_words.update(team_names)
 
 min_stop_words = stop_words
 mid_stop_words = stop_words | team_names
-max_stop_words = stop_words | all_fbs_teams | state_names | squished_state_names | other_state_tokens
+max_stop_words = stop_words | all_fbs_teams | state_names | squished_state_names | other_state_tokens | common_stopwords | univ_stopwords | top10_mascot_stopwords
 
 MAX_WORD_LEN = 16
 
@@ -379,21 +394,6 @@ def clean_text_mid(text):
 def clean_text_max(text):
     # Remove stopwords
     words = text.split()
-
-    common_stopwords = ['cfb', 'rcfb']
-    univ_stopwords = ['university', 'u', 'state', 'tech', 'college']
-    top10_mascot_stopwords = [
-    'wolverines', 'mich', 'umich', # Michigan
-    'bulldogs', 'dawgs' # Georgia
-    'roll', 'tide', 'bama', # Alabama
-    'irish', 'fighting', 'nd' #ND
-    'noles', 'seminoles', # FSU
-    'hawks', 'hawkeyes', # Iowa
-    'bucks', 'buckeyes' # OSU
-    'boomer', 'sooner', 'homa' # Oklahoma
-    'ducks', # Oregon
-    'horns', 'longhorns', 'hookem' # Texas
-    ]
 
     # filtered_words = [word for word in words if word not in stop_words and len(word) < MAX_WORD_LEN and not word.isnumeric()]
     filtered_words = []
